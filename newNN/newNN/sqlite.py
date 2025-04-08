@@ -3,7 +3,7 @@ import sqlite3
 
 class DateBase:
     def __init__(self):
-        self.connection: sqlite3.Connection = sqlite3.connect('../dataNN.db')#tudaSuda/
+        self.connection: sqlite3.Connection = sqlite3.connect('newNN/dataNN.db')#tudaSuda/
         self.cursor: sqlite3.Cursor = self.connection.cursor()
 
     def commit(self):
@@ -19,16 +19,34 @@ class DateBase:
         
 if __name__ == '__main__':
     base = DateBase()
+    import base64
+    
+    with open('img.png', mode='rb') as img_file:
+        image_64_encode = base64.b64encode(img_file.read())
+        
+    
+    
+    a = base.execute(
+        f"""INSERT INTO imgs (id, imgData)
+        VALUES ('1', "{image_64_encode}")"""
+    )
+    '''
     base.execute(
-        f"""CREATE TABLE actions (
+        f"""CREATE TABLE hotels (
             id INT,
             name TEXT,
+            address TEXT,
             description TEXT,
-            data TEXT,
+            contacts TEXT,
+            categories TEXT,
+            district TEXT,
+            stars INT,
             photo_id TEXT
-        );"""
-                     )
+        );""" [('actions',), ('places',), ('hotels',), ('imgs',)]
+    )'''
     base.commit()
     base.close()
+    
+
     
     
