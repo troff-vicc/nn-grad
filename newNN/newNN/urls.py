@@ -21,4 +21,5 @@ from django.urls import include
 
 urlpatterns = [
     path('', views.index),
+    path('place', views.place)
 ]
