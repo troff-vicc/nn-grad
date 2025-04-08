@@ -21,5 +21,8 @@ from django.urls import include
 
 urlpatterns = [
     path('', views.index),
-    path('place', views.place)
+    path('place', views.place),
+    path('child', views.child),
+    path('hotel', views.hotel),
+
 ]
