@@ -24,9 +24,21 @@ if __name__ == '__main__':
     base = DateBase()
     import base64, json
     
+    
+    a = base.execute("""select imgData from imgs where id=3""").fetchall()[1][0]
+    base.execute(f"""DELETE FROM place WHERE id=3 AND imgData='{a}'""")
+    '''
     description = """Мы - #островкусныйресторан южной и кавказской кухни с лучшей летней верандой в городе. К нам приглашают самых любимых и дорогих сердцу людей, чтобы разделить красивое застолье и насладиться радушным вниманием, тепло отметить важные события, запомнить семейные праздники или просто сделать обычные ужины яркими. За этим гости неизменно возвращаются к нам."""
     contact = {'tel': "8 (831) 216-01-00", 'link': 'https://tempcoffee.ru'}
     contact = json.dumps(contact)
+    
+    
+    with open('img.png', mode='rb') as img_file:
+        image_64_encode = base64.b64encode(img_file.read())
+    a = base.execute(
+        f"""INSERT INTO imgs (id, imgData)
+        VALUES ('3', "{image_64_encode}")"""
+    )
     
     categories = ['1']
     categories = json.dumps(categories)
@@ -39,13 +51,7 @@ if __name__ == '__main__':
             VALUES('5', 'Кофейня ТЕМП', 'ул. Пискунова, 24', '{description}', '{contact}', '{categories}', '2', '{img}')"""
     )
 
-    '''
-    with open('img.png', mode='rb') as img_file:
-        image_64_encode = base64.b64encode(img_file.read())
-    a = base.execute(
-        f"""INSERT INTO imgs (id, imgData)
-        VALUES ('2', "{image_64_encode}")"""
-    )
+    
     print(base.execute("PRAGMA table_info('hotels');").fetchall())
 
     
