@@ -47,6 +47,11 @@ font-size: 20px;
 padding-left:10px;
 padding-right:10px;
 }
+.pho {
+  width: 100vw;
+  object-fit: cover;
+  display: block;
+}
 footer{
   height:400px;
   background: url("/static/foot.png");
@@ -157,4 +162,65 @@ float: right;
 .prof{
   width:40px;
   height:40px
+}
+.nizh{
+  margin-top:125px;
+  font-family: "Oswald", sans-serif;
+    font-size: 6vw;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    background-image: linear-gradient(to right,  #3A6480,#5A9CC7,#68B4E6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 5vw;
+}
+.opis{ 
+    margin-left: 20px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 3.5vw;
+    margin-left:18vw;
+    line-height: 1.5;
+}
+.tpoz{
+width:30vw;
+margin-left:5vw;
+
+}
+.lil{
+  font-family: "Oswald", sans-serif;
+width:40vw;
+padding: 18px;
+background-color: #79B6E4;
+margin-left: 6vw;
+font-size: 2.7vw;
+border-radius: 35px;
+color:#fff;
+}
+.lalala{
+  margin-bottom:50px;
+  display: flex;
+}
+.lil1{
+  font-family: "Oswald", sans-serif;
+width:40vw;
+padding: 18px;
+background-color: #79B6E4;
+margin-left: 10vw;
+font-size: 2.7vw;
+border-radius: 35px;
+color:#fff;
+}
+.baby{
+  margin-left:6vw;
+  text-decoration: none;
+  color: black;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 4vw;
+}
+.check{
+  margin-top:100px;
+  margin-bottom: 70px;
 }

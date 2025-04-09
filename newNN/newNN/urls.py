@@ -27,6 +27,8 @@ urlpatterns = [
     path('help', views.help),
     path('place/<int:id>', views.placeOne),
     path('hotel/<int:id>', views.hotelOne),
+    path('place/edit/<int:id>', views.placeEdit),
+    path('hotel/edit/<int:id>', views.hotelEdit),
     path('admin', views.admin),
     path('log', views.log)
     

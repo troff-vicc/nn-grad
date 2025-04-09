@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .forms import PlaceForm, HotelForm, LogForm
+from .forms import PlaceForm, HotelForm, LogForm, PlaceEditForm
 from .sqlite import DateBase
 import json
 
@@ -250,6 +250,23 @@ def log(request):
     else:
         form = LogForm()
     return render(request, 'log.html', {'form': form})
+
+
+def placeEdit(request, id):
+    dateBase = DateBase()
+    if request.method == 'POST':
+        form = PlaceEditForm(request.POST)
         
+    else:
+        data = list(dateBase.execute(f"""SELECT * FROM places WHERE id={id}""").fetchone())
+        cont = json.loads(data[4])
+        tel = cont['tel'] if 'tel' in cont else ''
+        email = cont['email'] if 'email' in cont else ''
+        link = cont['link'] if 'link' in cont else ''
+        categories = [json.loads(data[5])[0]]
+        form = PlaceEditForm(my_arg = data[1:4] + [tel, email, link] + categories + [data[6]])
+        return render(request, 'placeEdit.html', {'form': form})
     
-    
+
+def hotelEdit(request):
+    pass

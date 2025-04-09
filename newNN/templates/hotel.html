@@ -29,11 +29,12 @@
       <input type='submit' value="поиск" id="search">
 </form>
 {% for hotel in hotels %}
-<div class="containers" id="{{hotel.0}}">
-    <p class="tourName">{{hotel.1}} ({{hotel.3}}⭐️)</p>
-    <img class="imgLink" src="data:image/gif;base64,{{hotel.5}}">
-    <p class="desc">{{hotel.2}}</p>
-</div>
+<div id="{{hotel.0}}"><a href="/hotel/{{hotel.0}}" class="fin">
+    <img src="data:image/gif;base64,{{hotel.5}}" class="ph">
+    <span class="mask">
+      <p class="inf">{{hotel.1}}</p>
+    </span>
+  </a></div>
 {% endfor %}
 <footer>
   
@@ -49,11 +50,12 @@
   <p class="lolka">Кремль, 7</p>
   <p class="lol">ул. Костина, 2</p>
   </div>
-  
+  <a href="/admin">
   <div class="or">
     <img src="{% static 'profi.png'%}" alt="" class="prof">
     <p class="panel">Панель администратора</p>
   </div>
+</a>
   </footer>
 </body>
 </html>
