@@ -128,3 +128,8 @@ def child(request):
 
 def help(request):
     return render(request, 'help.html')
+
+
+def placeOne(request, id):
+    
+    return render(request, 'home.html')

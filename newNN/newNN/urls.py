@@ -24,5 +24,7 @@ urlpatterns = [
     path('place', views.place),
     path('child', views.child),
     path('hotel', views.hotel),
+    path('help', views.help),
+    path('place/<int:id>', views.placeOne)
 
 ]

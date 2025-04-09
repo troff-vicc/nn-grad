@@ -2,10 +2,14 @@
 {% load static %}
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{% static 'logo.png'%}" />
     <meta charset="UTF-8">
-    <title>Нижний</title>
+    <title>Помощь</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/home.css'%}">
+    <link rel="stylesheet" href="{% static 'css/help.css'%}">
 </head>
 <body>
     <main>
@@ -13,10 +17,10 @@
 <div class="find">
     <div class="logo"><a href="/"><img src="{% static 'logo.png'%}" alt="logo" class="logo"></a></div>
     <div class="opt"><a href="/place" class="go">Куда пойти</a></div>
-    <div class="opt"><a href="" class="go">Где остановиться</a></div>
-    <div class="opt"><a href="" class="go">События</a></div>
-    <div class="opt"><a href="" class="go">Детский путеводитель</a></div>
-    <div class="opt"><a href="" class="go">Помощь</a></div>
+    <div class="opt"><a href="/hotel" class="go">Где остановиться</a></div>
+    <div class="opt"><a href="/" class="go">События</a></div>
+    <div class="opt"><a href="/child" class="go">Детский путеводитель</a></div>
+    <div class="opt"><a href="/help" class="go1">Помощь</a></div>
 </div>
 </header>
 </main>

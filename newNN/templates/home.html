@@ -19,6 +19,13 @@
             controls: [],
             zoom: 11
         });
+        myGeoObject = new ymaps.GeoObject({
+            // Описание геометрии.
+            geometry: {
+                type: "Point",
+                coordinates: [56.337386, 43.964610]
+            }})
+        myMap.geoObjects.add(myGeoObject)
     }
 </script>
 </head>
@@ -28,10 +35,10 @@
 <div class="find">
     <div class="logo"><a href="/"><img src="{% static 'logo.png'%}" alt="logo" class="logo"></a></div>
     <div class="opt"><a href="/place" class="go">Куда пойти</a></div>
-    <div class="opt"><a href="" class="go">Где остановиться</a></div>
-    <div class="opt"><a href="" class="go">События</a></div>
-    <div class="opt"><a href="" class="go">Детский путеводитель</a></div>
-    <div class="opt"><a href="" class="go">Помощь</a></div>
+    <div class="opt"><a href="/hotel" class="go">Где остановиться</a></div>
+    <div class="opt"><a href="/" class="go">События</a></div>
+    <div class="opt"><a href="/child" class="go">Детский путеводитель</a></div>
+    <div class="opt"><a href="/help" class="go">Помощь</a></div>
 </div>
 </header>
 <img src="{% static 'image-1.png'%}" alt="" class="pho">
