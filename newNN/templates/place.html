@@ -2,8 +2,13 @@
 {% load static %}
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{% static 'logo.png'%}" />
     <meta charset="UTF-8">
     <title>Куда идти</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/place.css'%}">
 </head>
 <body>
@@ -18,18 +23,20 @@
         <div class="opt"><a href="" class="go">Помощь</a></div>
     </div>
     </header>
-    <img src="https://www.google.com/logos/doodles/2020/december-holidays-days-2-30-6753651837108830.5-s.png" alt="">
     </main>
-<form action="/" method="post">
+<form action="/place" method="post">
       {%csrf_token%}
-      {{form}}
+    {{form.allCategories}}
+    {{form.allDistrict}}
       <input type='submit' value="поиск" id="search">
 </form>
 {% for place in places %}
+<div class="salages"></div>
 <div class="containers" id="{{place.0}}">
+    <div class="svo"><img class="imgLink" src="data:image/gif;base64,{{place.4}}"></div>
     <p class="tourName">{{place.1}}</p>
-    <img class="imgLink" src="data:image/gif;base64,{{place.4}}">
     <p class="desc">{{place.2}}</p>
+</div>
 </div>
 {% endfor %}
 </body>

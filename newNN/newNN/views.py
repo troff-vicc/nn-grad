@@ -10,39 +10,43 @@ def index(request):
 
 def place(request):
     dateBase = DateBase()
-    
-    def check(data, tr):
-        data = json.loads(data)
-        return tr in data
         
     if request.method == 'POST':
-        print(1)
         form = PlaceForm(request.POST)
-        dateBase.create_function('CHECK', 2, check)
-        categories = form.cleaned_data['allCategories']
-        district = form.cleaned_data['allDistrict']
-        places = []
-        if district != 0:
-            print(2)
-            places += list(dateBase.execute(
-                f'''SELECT id, name, description, photo_id
-                            FROM places WHERE district = {district}'''
-            ).fetchall())
-        if categories != 0:
-            print(3)
-            places += list(dateBase.execute(
-                f'''SELECT id, name, description, photo_id
-                                        FROM places WHERE CHECK(categories, '{categories}')'''
-            ).fetchall())
-        places = list(set(places))
-        for i in range(len(places)):
-            print(4)
-            img = json.loads(places[i][3])[0]
-            img = dateBase.execute(
-                f'''SELECT imgData FROM imgs WHERE id = {img}'''
-            ).fetchone()[0]
-            places[i] = list(places[i]) + [img[2:-1]]
-        return render(request, 'place.html', {'form': form, 'places': places})
+        if form.is_valid():
+            categories = form.cleaned_data['allCategories']
+            district = form.cleaned_data['allDistrict']
+            places = []
+            out = []
+            if district == 0 and categories == 0:
+                return HttpResponseRedirect('/place')
+            if district != 0:
+                out = [j[0] for j in dateBase.execute(
+                    f'''SELECT id FROM places WHERE district = {district}'''
+                ).fetchall()]
+            if categories != 0:
+                allPl = dateBase.execute(
+                    f'''SELECT id, categories FROM places'''
+                ).fetchall()
+                for pl in allPl:
+                    data1 = json.loads(pl[1])
+                    if categories in data1:
+                        out.append(pl[0])
+            out = list(set(out))
+            for i in out:
+                places.append(list(dateBase.execute(
+                    f'''SELECT id, name, description, photo_id
+                                            FROM places WHERE id = {i}'''
+                ).fetchone()))
+            for i in range(len(places)):
+                img = json.loads(places[i][-1])[0]
+                img = dateBase.execute(
+                    f'''SELECT imgData FROM imgs WHERE id = {img}'''
+                ).fetchone()[0]
+                places[i] = list(places[i]) + [img[2:-1]]
+            return render(request, 'place.html', {'form': form, 'places': places})
+        else:
+            return HttpResponseRedirect('/place')
     else:
         form = PlaceForm()
         places = dateBase.execute(
@@ -62,23 +66,61 @@ def place(request):
 def hotel(request):
     dateBase = DateBase()
     if request.method == 'POST':
-        form = PlaceForm(request.POST)
-        categories = form.cleaned_data['allCategories']
+        form = HotelForm(request.POST)
+        if form.is_valid():
+            categories = form.cleaned_data['allCategories']
+            district = form.cleaned_data['allDistrict']
+            stars = form.cleaned_data['allStars']
+            hotels = []
+            out = []
+            if district == 0 and categories == 0 and stars == 0:
+                return HttpResponseRedirect('/hotel')
+            if district != 0:
+                out = [j[0] for j in dateBase.execute(
+                    f'''SELECT id FROM hotels WHERE district = {district}'''
+                ).fetchall()]
+            if categories != 0:
+                allPl = dateBase.execute(
+                    f'''SELECT id, categories FROM hotels'''
+                ).fetchall()
+                for pl in allPl:
+                    data1 = json.loads(pl[1])
+                    if categories in data1:
+                        out.append(pl[0])
+            if stars != 0:
+                out += [j[0] for j in dateBase.execute(
+                    f'''SELECT id FROM hotels WHERE stars = {stars}'''
+                ).fetchall()]
+            out = list(set(out))
+            for i in out:
+                hotels.append(list(dateBase.execute(
+                    f'''SELECT id, name, description, stars, photo_id
+                                            FROM hotels WHERE id = {i}'''
+                ).fetchone()))
+            for i in range(len(hotels)):
+                img = json.loads(hotels[i][-1])[0]
+                img = dateBase.execute(
+                    f'''SELECT imgData FROM imgs WHERE id = {img}'''
+                ).fetchone()[0]
+                hotels[i] = list(hotels[i]) + [img[2:-1]]
+            return render(request, 'hotel.html', {'form': form, 'hotels': hotels})
+        else:
+            return HttpResponseRedirect('/hotel')
         
     else:
         form = HotelForm()
-        places = dateBase.execute(
+        hotels = dateBase.execute(
             f'''SELECT id, name, description, stars, photo_id
                 FROM hotels LIMIT 8'''
         ).fetchall()
-        for i in range(len(places)):
-            img = json.loads(places[i][-1])[0]
+        for i in range(len(hotels)):
+            img = json.loads(hotels[i][-1])[0]
             img = dateBase.execute(
                 f'''SELECT imgData FROM imgs WHERE id = {img}'''
             ).fetchone()[0]
-            places[i] = list(places[i]) + [img[2:-1]]
+            hotels[i] = list(hotels[i]) + [img[2:-1]]
     
-    return render(request, 'hotel.html', {'form': form, 'places': places})
+    return render(request, 'hotel.html', {'form': form, 'hotels': hotels})
 
 
 def child(request):

@@ -11,16 +11,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/home.css'%}">
     <script src="https://api-maps.yandex.ru/2.1/?apikey=42544b33-4c3a-453d-80bb-acebe1c1cda8&lang=ru_RU" type="text/javascript"></script>
-<script type="text/javascript">
-    ymaps.ready(init);
-    function init(){
-        var myMap = new ymaps.Map("map", {
-            center: [56.328673, 44.002039],
-            controls: [],
-            zoom: 11
-        });
-    }
-</script>
+    <script type="text/javascript">
+        ymaps.ready(init);
+        function init(){
+            var myMap = new ymaps.Map("map", {
+                center: [56.328673, 44.002039],
+                controls: [],
+                zoom: 11
+            });
+        }
+    </script>
 </head>
 <body>
     <main>

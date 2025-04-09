@@ -5,12 +5,6 @@ html {
 body {
   min-height: 100%;
 }
-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
 header{
     background-color: white;
    height:100px;
@@ -24,22 +18,95 @@ header{
     margin-top: 35px;
 }
 .go{
-    background-color: #D9D9D9;
-    color:black;
-    border-radius: 10px;
-    text-decoration: none;
-    padding:5px;
-    font-size: 20px;
-    padding-left:10px;
-    padding-right:10px;
-    }
-.go1{
-background-color: #E30613;
+  font-family: "Open Sans", sans-serif;
+background-color: #D9D9D9;
 color:black;
-border-radius: 10px;
+border-radius: 45px;
 text-decoration: none;
 padding:5px;
 font-size: 20px;
 padding-left:10px;
 padding-right:10px;
 }
+.go1{
+  font-family: "Open Sans", sans-serif;
+background-color: #E30613;
+color:#ffffff;
+border-radius: 45px;
+text-decoration: none;
+padding:5px;
+font-size: 20px;
+padding-left:10px;
+padding-right:10px;
+}
+#id_allCategories {
+  font-family: "Open Sans", sans-serif;
+border:1px solid black;
+width:200px;
+height:30px;
+font-size: 20px;
+border-radius: 45px;
+padding-left:4px;
+
+}
+#id_allDistrict {
+  padding-left:4px;
+  font-family: "Open Sans", sans-serif;
+border:1px solid black;
+width:200px;
+height:30px;
+font-size: 20px;
+border-radius: 45px;
+}
+#search{
+  background-color: #ffffff;
+  font-family: "Open Sans", sans-serif;
+  border:1px solid black;
+  width:70px;
+  height:30px;
+  font-size: 20px;
+  border-radius: 45px;
+  padding-left:4px;
+}
+form{
+  margin-top: 50px;
+  margin-bottom: 50px;
+text-align: center;
+}
+.containers{
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 20px;
+  width:300px;
+  height:495px;
+  background-color: #D9D9D9;
+  border-radius: 20px;
+}
+.imgLink{
+  width:280px;
+  height:280px;
+border-radius: 20px;
+margin-top: 10px;
+}
+.svo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tourName{
+  margin-left: 10px;
+  margin-right: 10px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.desc{
+  
+  font-family: "Open Sans", sans-serif;
+  margin:10px;
+  margin-top:0px;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  max-height:150px;
+}
+
