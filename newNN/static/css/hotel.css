@@ -1,0 +1,88 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+html {
+    height: 100%;
+}
+body {
+  min-height: 100%;
+}
+header{
+    background-color: white;
+   height:100px;
+}
+.find{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.opt{
+    margin-top: 35px;
+}
+.go{
+  font-family: "Open Sans", sans-serif;
+background-color: #D9D9D9;
+color:black;
+border-radius: 45px;
+text-decoration: none;
+padding:5px;
+font-size: 20px;
+padding-left:10px;
+padding-right:10px;
+}
+.go1{
+  font-family: "Open Sans", sans-serif;
+background-color: #E30613;
+color:#ffffff;
+border-radius: 45px;
+text-decoration: none;
+padding:5px;
+font-size: 20px;
+padding-left:10px;
+padding-right:10px;
+}
+#id_allStars{ 
+    font-family: "Open Sans", sans-serif;
+  border:1px solid black;
+  width:200px;
+  height:30px;
+  font-size: 20px;
+  border-radius: 45px;
+  padding-left:4px;
+}
+#id_allCategories {
+    font-family: "Open Sans", sans-serif;
+  border:1px solid black;
+  width:200px;
+  height:30px;
+  font-size: 20px;
+  border-radius: 45px;
+  padding-left:4px;
+  
+  }
+  #id_allDistrict {
+    padding-left:4px;
+    font-family: "Open Sans", sans-serif;
+  border:1px solid black;
+  width:200px;
+  height:30px;
+  font-size: 20px;
+  border-radius: 45px;
+  }
+  #search{
+    background-color: #ffffff;
+    font-family: "Open Sans", sans-serif;
+    border:1px solid black;
+    width:70px;
+    height:30px;
+    font-size: 20px;
+    border-radius: 45px;
+    padding-left:4px;
+  }
+  form{
+    margin-top: 50px;
+    margin-bottom: 50px;
+  text-align: center;
+  }
