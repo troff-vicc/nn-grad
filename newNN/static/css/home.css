@@ -16,16 +16,19 @@ body {
   }
 header{
     background-color: white;
-   height:100px;
+   height:84px;
+}
+.logo{
+    width:60px;
+}
+.opt{
+    margin-top: 29px;
 }
 .find{
     display: flex;
     justify-content: space-between;
     margin-right: 20px;
     margin-left: 20px;
-}
-.opt{
-    margin-top: 35px;
 }
 .go{
     font-family: "Open Sans", sans-serif;
@@ -37,6 +40,7 @@ padding:5px;
 font-size: 20px;
 padding-left:10px;
 padding-right:10px;
+font-weight: 400;
 }
 .photos{
 
@@ -123,13 +127,15 @@ b{
     font-size: 3.5vw;
 }
 footer{
-    height:400px;
+    display: flex;
+    min-height:400px;
     background: url("/static/foot.png");
     background-repeat: no-repeat;
     background-size: cover;
+    margin-top: 50px;
 }
 .cont{
-    color: #fff;
+    color: rgba(255,255,255, .8);
     font-family: "Oswald", sans-serif;
     font-size: 30px;
     margin-left: 7vw;
@@ -156,4 +162,43 @@ footer{
 .tg{
     padding-top:10px;
     margin-left: 20px;
+}
+.lol{
+
+    color: #fff;
+    font-family: "Oswald", sans-serif;
+    font-size: 27px;
+    margin-left: 20vw;
+}
+.lolka{
+    margin-top:50px;
+    color: #fff;
+    font-family: "Oswald", sans-serif;
+    font-size: 27px;
+    margin-left: 20vw;
+}
+.contik{
+    color: rgba(255,255,255, .8);
+    font-family: "Oswald", sans-serif;
+    font-size: 30px;
+    margin-left: 17vw;
+    padding-top:60px;
+}
+.panel{
+    margin-top: 11px;
+    color: #fff;
+    font-family: "Oswald", sans-serif;
+    font-size: 17px;
+
+}
+.or{
+    margin-top:340px;
+    position: absolute;
+    right: 30px;
+    display: flex;
+float: right;
+}
+.prof{
+    width:40px;
+    height:40px
 }

@@ -16,3 +16,9 @@ class HotelForm(forms.Form):
     allCategories = forms.ChoiceField(choices = categories, label_suffix=False, label='')
     allDistrict = forms.ChoiceField(choices = district, label_suffix=False, label='')
     allStars = forms.ChoiceField(choices=stars, label_suffix=False, label='')
+    
+
+class LogForm(forms.Form):
+    code = forms.CharField(label_suffix=False, label='', max_length=50,
+                           widget=forms.TextInput(attrs={'placeholder': 'Код админа',
+                                                         'autocomplete': "off"}))

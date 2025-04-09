@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>admin</title>
+</head>
+<body>
+
+<button id="placesB" onclick="placesF();">Места</button>
+<button id="hotelsB" onclick="hotelsF();">Отели</button>
+
+<div id="places">
+{% for place in places %}
+<div id="{{place.0}}">
+    <a href="/place/{{place.0}}" class="fin">
+        <img src="data:image/gif;base64,{{place.4}}" class="ph">
+        <span class="mask">
+          <p class="inf">{{place.1}}</p>
+        </span>
+    </a>
+</div>
+{% endfor %}
+</div>
+
+<div id="hotels">
+{% for hotel in hotels %}
+<div class="containers" id="{{hotel.0}}">
+    <p class="tourName">{{hotel.1}} ({{hotel.3}}⭐️)</p>
+    <img class="imgLink" src="data:image/gif;base64,{{hotel.5}}">
+    <p class="desc">{{hotel.2}}</p>
+</div>
+{% endfor %}
+</div>
+
+
+<script>
+    const places = document.getElementById('places');
+    const hotels = document.getElementById('hotels');
+
+    hotels.style.display = 'none';
+
+    function placesF(){
+        places.style.display = 'block';
+        hotels.style.display = 'none';
+    }
+
+    function hotelsF() {
+        places.style.display = 'none';
+        hotels.style.display = 'block';
+    }
+</script>
+</body>
+</html>

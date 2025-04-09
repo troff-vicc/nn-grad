@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .forms import PlaceForm, HotelForm
+from .forms import PlaceForm, HotelForm, LogForm
 from .sqlite import DateBase
 import json
 
@@ -14,6 +14,7 @@ def place(request):
     if request.method == 'POST':
         form = PlaceForm(request.POST)
         if form.is_valid():
+            
             categories = form.cleaned_data['allCategories']
             district = form.cleaned_data['allDistrict']
             places = []
@@ -159,6 +160,7 @@ def hotel(request):
 def child(request):
     return render(request, 'child.html')
 
+
 def help(request):
     return render(request, 'help.html')
 
@@ -201,8 +203,53 @@ def hotelOne(request, id):
 
 def admin(request):
     idU = request.COOKIES.get('id', False)
-    if not idU:
-        return HttpResponseRedirect('/')
+    if idU != '3d5148a1666a59cc27311c96f9a346effaa6beacc4e2e55c6ee23d7ea925b44a':
+        return HttpResponseRedirect('/log')
+    
+    dateBase = DateBase()
+    
+    #places
+    places = dateBase.execute(
+        f'''SELECT id, name, description, photo_id
+                    FROM places LIMIT 6'''
+    ).fetchall()
+    for i in range(len(places)):
+        img = json.loads(places[i][3])[0]
+        img = dateBase.execute(
+            f'''SELECT imgData FROM imgs WHERE id = {img}'''
+        ).fetchone()[0]
+        places[i] = list(places[i]) + [img[2:-1]]
     
     
-    return render(request, 'help.html')
+    #hotels
+    hotels = dateBase.execute(
+        f'''SELECT id, name, description, stars, photo_id
+                    FROM hotels LIMIT 6'''
+    ).fetchall()
+    for i in range(len(hotels)):
+        img = json.loads(hotels[i][-1])[0]
+        img = dateBase.execute(
+            f'''SELECT imgData FROM imgs WHERE id = {img}'''
+        ).fetchone()[0]
+        hotels[i] = list(hotels[i]) + [img[2:-1]]
+        
+    
+    return render(request, 'admin.html', {'places': places, 'hotels': hotels})
+
+
+def log(request):
+    
+    if request.method == 'POST':
+        form = LogForm(request.POST)
+        if form.is_valid():
+            code = form.cleaned_data['code']
+            if code == 'admin123':
+                outt = HttpResponseRedirect('/admin')
+                outt.set_cookie("id", '3d5148a1666a59cc27311c96f9a346effaa6beacc4e2e55c6ee23d7ea925b44a', max_age=7 * 24 * 60 * 60)
+                return outt
+    else:
+        form = LogForm()
+    return render(request, 'log.html', {'form': form})
+        
+    
+    

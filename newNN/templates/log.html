@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>вход</title>
+</head>
+<body>
+<form action="/log" method="post">
+      {%csrf_token%}
+      {{form}}
+      <input type='submit' value="поиск" id="search">
+</form>
+</body>
+</html>
