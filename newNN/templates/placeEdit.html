@@ -5,7 +5,7 @@
     <title>вход</title>
 </head>
 <body>
-<form action="/place/edit/{{id}}" method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
       {%csrf_token%}
       {{form}}
       <input type='submit' value="поиск" id="search">

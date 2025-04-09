@@ -23,8 +23,7 @@ class DateBase:
 if __name__ == '__main__':
     base = DateBase()
     import base64, json
-    
-    print(base.execute("PRAGMA table_info('places');").fetchall())
+    print(len(base.execute("""select * from places""").fetchall()))
     #a = base.execute("""select imgData from imgs where id=3""").fetchall()[1][0]
     #base.execute(f"""DELETE FROM place WHERE id=3 AND imgData='{a}'""")
     '''

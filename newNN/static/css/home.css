@@ -79,7 +79,7 @@ span {
 span {
     height:300px;
     position: absolute;
-    top: 0;
+    top: 50px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -202,4 +202,23 @@ float: right;
 .prof{
     width:40px;
     height:40px
+}
+.phtchk{
+    margin-top: 150px;
+    margin-left:7vw;
+    display:flex;
+}
+.dwa{
+    display: block;
+}
+#adin{
+    margin-right: 3vw;
+    width:41.7vw;
+}
+#dwa{
+    width: 39.5vw;
+}
+#tri{
+    margin-top: 3.12vw;
+    width: 39.5vw;
 }

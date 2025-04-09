@@ -261,7 +261,6 @@ def placeEdit(request, id):
         print(1)
         form = PlaceEditForm(request.POST, request.FILES)
         if form.is_valid():
-            print(1)
             name = form.cleaned_data['name']
             description = form.cleaned_data['description']
             address = form.cleaned_data['address']
@@ -270,7 +269,6 @@ def placeEdit(request, id):
             link = form.cleaned_data['link']
             allCategories = form.cleaned_data['allCategories']
             allDistrict = form.cleaned_data['allDistrict']
-            cur = dateBase.execute(f'''SELECT id from places;''').fetchall()
             
             idImg = []
             img_file = form.cleaned_data['img_file']
@@ -294,11 +292,20 @@ def placeEdit(request, id):
                 contact['link'] = link
             
             
-            dateBase.execute(
-                f"""INSERT INTO places (id, name, address, description, contacts, categories, district, photo_id)
-                        VALUES({len(cur)}, '{name}', '{address}', '{description}', "{contact}", '{categories}', '{allDistrict}', '{dataJson}')"""
+            dateBase.execute(#(id, name, address, description, contacts, categories, district, photo_id)
+                f"""UPDATE places SET
+                        name = '{name}',
+                        address = '{address}',
+                        description = '{description}',
+                        contacts = "{contact}",
+                         categories = '{categories}',
+                         district = '{allDistrict}',
+                         photo_id = '{dataJson}'
+                         WHERE id = {id};
+"""
             )
-            
+            dateBase.commit()
+            dateBase.close()
             return HttpResponseRedirect('/admin')
         else:
             print(form.errors)
