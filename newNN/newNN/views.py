@@ -140,5 +140,6 @@ def placeOne(request, id):
     img = dateBase.execute(
         f'''SELECT imgData FROM imgs WHERE id = {img}'''
     ).fetchone()[0]
+    json.loads(place[4])
     place = list(place) + [img[2:-1]]
     return render(request, 'place_one.html', {'place': place})

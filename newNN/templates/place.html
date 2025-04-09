@@ -33,10 +33,13 @@
 {% for place in places %}
 <div class="salages"></div>
 <div class="containers" id="{{place.0}}">
-    <div class="svo"><img class="imgLink" src="data:image/gif;base64,{{place.4}}"></div>
-    <p class="tourName">{{place.1}}</p>
-    <p class="desc">{{place.2}}</p>
-</div>
+    <a href="/place/{{place.0}}">
+        <div class="svo">
+            <img class="imgLink" src="data:image/gif;base64,{{place.4}}">
+        </div>
+        <p class="tourName">{{place.1}}</p>
+        <p class="desc">{{place.2}}</p>
+    </a>
 </div>
 {% endfor %}
 </body>
