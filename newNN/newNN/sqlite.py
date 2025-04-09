@@ -3,7 +3,7 @@ import sqlite3
 
 class DateBase:
     def __init__(self):
-        self.connection: sqlite3.Connection = sqlite3.connect('newNN/dataNN.db')#tudaSuda/
+        self.connection: sqlite3.Connection = sqlite3.connect('newNN/dataNN.db')#newNN
         self.cursor: sqlite3.Cursor = self.connection.cursor()
 
     def commit(self):
@@ -24,7 +24,7 @@ if __name__ == '__main__':
     base = DateBase()
     import base64
     
-    print(base.execute("PRAGMA table_info('places');").fetchall())
+    print(base.execute("PRAGMA table_info('hotels');").fetchall())
     
     
     

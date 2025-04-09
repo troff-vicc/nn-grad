@@ -1,0 +1,74 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+html {
+    height: 100%;
+}
+body {
+  min-height: 100%;
+}
+.pho {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+header{
+    background-color: white;
+   height:100px;
+}
+.find{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.opt{
+    margin-top: 35px;
+}
+.go{
+    font-family: "Open Sans", sans-serif;
+background-color: #D9D9D9;
+color:black;
+border-radius: 45px;
+text-decoration: none;
+padding:5px;
+font-size: 20px;
+padding-left:10px;
+padding-right:10px;
+}
+.go1{
+    font-family: "Open Sans", sans-serif;
+  background-color: #E30613;
+  color:#ffffff;
+  border-radius: 45px;
+  text-decoration: none;
+  padding:5px;
+  font-size: 20px;
+  padding-left:10px;
+  padding-right:10px;
+  }
+  .tourName{
+    margin-top: 30px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    font-size: 64px;
+    margin-left:20px;
+}
+.desc{
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    margin-left:20px;
+    line-height: 2;
+    margin-top:20px;
+}
+.address{
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    margin-left:20px;
+    line-height: 2;
+    margin-top:30px;
+}

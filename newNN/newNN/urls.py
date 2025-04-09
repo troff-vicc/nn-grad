@@ -25,6 +25,7 @@ urlpatterns = [
     path('child', views.child),
     path('hotel', views.hotel),
     path('help', views.help),
-    path('place/<int:id>', views.placeOne)
-
+    path('place/<int:id>', views.placeOne),
+    path('hotel/<int:id>', views.hotelOne),
+    path('admin', views.admin)
 ]

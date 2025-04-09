@@ -17,22 +17,34 @@ def place(request):
             categories = form.cleaned_data['allCategories']
             district = form.cleaned_data['allDistrict']
             places = []
-            out = []
-            if district == 0 and categories == 0:
-                return HttpResponseRedirect('/place')
-            if district != 0:
+            print(categories, district)
+
+            if district != '0':
                 out = [j[0] for j in dateBase.execute(
                     f'''SELECT id FROM places WHERE district = {district}'''
                 ).fetchall()]
-            if categories != 0:
+            else:
+                out = [j[0] for j in dateBase.execute(
+                    f'''SELECT id FROM places'''
+                ).fetchall()]
+            out1 = []
+            if categories != '0':
                 allPl = dateBase.execute(
                     f'''SELECT id, categories FROM places'''
                 ).fetchall()
                 for pl in allPl:
                     data1 = json.loads(pl[1])
                     if categories in data1:
-                        out.append(pl[0])
-            out = list(set(out))
+                        out1.append(pl[0])
+            else:
+                out1 = [j[0] for j in dateBase.execute(
+                    f'''SELECT id FROM places'''
+                ).fetchall()]
+            
+            print(out, out1)
+            out = list(set(out) & set(out1))
+            
+                
             for i in out:
                 places.append(list(dateBase.execute(
                     f'''SELECT id, name, description, photo_id
@@ -75,10 +87,11 @@ def hotel(request):
             out = []
             if district == 0 and categories == 0 and stars == 0:
                 return HttpResponseRedirect('/hotel')
-            if district != 0:
+            if district != 0 :
                 out = [j[0] for j in dateBase.execute(
                     f'''SELECT id FROM hotels WHERE district = {district}'''
                 ).fetchall()]
+            out1 = []
             if categories != 0:
                 allPl = dateBase.execute(
                     f'''SELECT id, categories FROM hotels'''
@@ -86,12 +99,13 @@ def hotel(request):
                 for pl in allPl:
                     data1 = json.loads(pl[1])
                     if categories in data1:
-                        out.append(pl[0])
+                        out1.append(pl[0])
+            out2 = []
             if stars != 0:
-                out += [j[0] for j in dateBase.execute(
+                out2 = [j[0] for j in dateBase.execute(
                     f'''SELECT id FROM hotels WHERE stars = {stars}'''
                 ).fetchall()]
-            out = list(set(out))
+            out = list(set(out1) & set(out) & set(out2))
             for i in out:
                 hotels.append(list(dateBase.execute(
                     f'''SELECT id, name, description, stars, photo_id
@@ -140,6 +154,32 @@ def placeOne(request, id):
     img = dateBase.execute(
         f'''SELECT imgData FROM imgs WHERE id = {img}'''
     ).fetchone()[0]
-    json.loads(place[4])
-    place = list(place) + [img[2:-1]]
+    cont = json.loads(place[4])
+    tel = cont['tel'] if 'tel' in cont else ''
+    email = cont['email'] if 'email' in cont else ''
+    link = cont['link'] if 'link' in cont else ''
+    place = list(place) + [tel, email, link] + [img[2:-1]]
     return render(request, 'place_one.html', {'place': place})
+
+
+def hotelOne(request, id):
+    dateBase = DateBase()
+    hotel = dateBase.execute(
+        f'''SELECT id, name, address, description, contacts, stars, photo_id
+                    FROM hotels WHERE id ={id}'''
+    ).fetchone()
+    img = json.loads(hotel[-1])[0]
+    img = dateBase.execute(
+        f'''SELECT imgData FROM imgs WHERE id = {img}'''
+    ).fetchone()[0]
+    cont = json.loads(hotel[4])
+    tel = cont['tel'] if 'tel' in cont else ''
+    email = cont['email'] if 'email' in cont else ''
+    link = cont['link'] if 'link' in cont else ''
+    hotel = list(hotel) + [tel, email, link] + [img[2:-1]]
+    return render(request, 'place_one.html', {'hotel': hotel})
+
+
+def admin(request):
+    idU = request.COOKIES.get('id', False)
+    return render(request, 'help.html')
