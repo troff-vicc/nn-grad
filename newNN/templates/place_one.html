@@ -2,6 +2,9 @@
 {% load static %}
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="{% static 'logo.png'%}" />
@@ -28,13 +31,23 @@
 <div class="salages"></div>
 <div class="containers" id="{{place.0}}">
     <div class="svo"></div>
-    <p class="address">{{place.2}}</p>
     <p class="tourName">{{place.1}}</p>
     <p class="desc">{{place.3}}</p>
-    <p class="tel">{{place.6}}</p>
-    <p class="email">{{place.7}}</p>
-    <p class="link">{{place.8}}</p>
+    <p class="adr">Адрес:</p>
+    <p class="address">{{place.2}}</p>
+    {% if place.6 %}
+    <p class="adr">Телефон:</p>
+    <p class="address">{{place.6}}</p>
+    {% endif %}
+    {% if place.7 %}
+    <p class="adr">Почта:</p>
+    <p class="address">{{place.7}}</p>
+    {% endif %}
+    {% if place.8 %}
+    <p class="adr">Сайт:</p>
+    <p class="address">{{place.8}}</p>
+    {% endif %}
 </div>
 </div>
 </body>
-</html>
+</html> 

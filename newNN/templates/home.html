@@ -2,6 +2,9 @@
 {% load static %}
 <html lang="en">
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">  
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
@@ -25,7 +28,13 @@
                 type: "Point",
                 coordinates: [56.337386, 43.964610]
             }})
-        myMap.geoObjects.add(myGeoObject)
+        var myPlacemark = new ymaps.Placemark([56.337386, 43.964610], {}, {
+            iconLayout: 'default#image',
+            iconImageHref: '{% static 'mark.png'%}',
+            iconImageSize: [30, 42],
+            iconImageOffset: [-3, -42]
+        });
+        myMap.geoObjects.add(myPlacemark)
     }
 </script>
 </head>
@@ -43,21 +52,22 @@
 </header>
 <img src="{% static 'image-1.png'%}" alt="" class="pho">
 </main>
+<p class="osn"><b>1221</b>- основание Нижнего Новгорода</p>
 <p class="popular">Самые посещаемые места</p>
 <div class="photos">
-    <div><a href="" class="fin">
+    <div><a href="/place" class="fin">
         <img src="{% static 'image.png'%}" class="ph">
         <span class="mask">
           <p class="inf">Чкаловская лестница</p>
         </span>
       </a></div>
-      <div><a href="" class="fin">
+      <div><a href="/place" class="fin">
         <img src="{% static 'image-2.png'%}" class="ph">
         <span class="mask">
           <p class="inf">Стрелка</p>
         </span>
       </a></div>
-      <div><a href="" class="fin">
+      <div><a href="/place" class="fin">
         <img src="{% static 'image-3.png'%}" class="ph">
         <span class="mask">
           <p class="inf">Нижегородский Кремль</p>
@@ -65,5 +75,14 @@
       </a></div>
 </div>
 <div id="map"></div>
+<footer>
+<p class="cont">Контакты:</p>
+<p class="telep">+7 (831) 434-04-59</p>
+<p class="pocht">info@nn-grad.ru</p>
+<div class="link">
+  <img src="{% static 'vk.png'%}" alt="vk" class="vk">
+  <img src="{% static 'tg.png'%}" alt="tg" class="tg">
+</div>
+</footer>
 </body>
 </html>

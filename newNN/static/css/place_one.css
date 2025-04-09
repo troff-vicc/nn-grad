@@ -51,24 +51,69 @@ padding-right:10px;
   }
   .tourName{
     margin-top: 30px;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Oswald", sans-serif;
     font-weight: 600;
     font-size: 64px;
     margin-left:20px;
 }
 .desc{
-    font-family: "Open Sans", sans-serif;
+    font-family: "Oswald", sans-serif;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 25px;
     margin-left:20px;
-    line-height: 2;
     margin-top:20px;
+    font-weight: 400;
 }
 .address{
+    display: inline;
+    white-space: nowrap;
     font-family: "Open Sans", sans-serif;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 25px;
     margin-left:20px;
     line-height: 2;
-    margin-top:30px;
+    margin-top:0px;
+}
+.adr{
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 2;
+    margin-top:30px;  
+    margin-left:20px;
+}
+footer{
+    height:400px;
+    background: url("/static/foot.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.cont{
+    color: #fff;
+    font-family: "Oswald", sans-serif;
+    font-size: 30px;
+    margin-left: 7vw;
+    padding-top:60px;
+}
+.telep{
+    color: #fff;
+    font-family: "Oswald", sans-serif;
+    font-size: 23px;
+    margin-left: 7vw;
+    padding-top:60px;
+}
+.pocht{
+    color: #fff;
+    font-family: "Oswald", sans-serif;
+    font-size: 27px;
+    margin-left: 7vw;
+    text-decoration:underline;
+}
+.vk{
+
+    margin-left: 7vw;
+}
+.tg{
+    padding-top:10px;
+    margin-left: 20px;
 }

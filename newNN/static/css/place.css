@@ -119,6 +119,90 @@ a{
   text-decoration: none;
   color: black;
 }
-.salages{
+.photos{
+  margin-top:100px;
   display: flex;
+  justify-content: space-around;
+  margin-right: 5vw;
+  margin-left: 5vw;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.fin{
+  width:300px;
+  display: block;
+  position: relative;
+}
+
+span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+span {
+  height:300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .5);
+  opacity: 0;
+  color: #fff;
+  font-size: 40px;
+  transition: opacity .4s linear;
+  border-radius:25px;
+}
+
+span:hover {
+  opacity: 1;
+}
+.inf{
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  text-align: center;
+  transform: translateY(110px);
+}
+.ph{
+  height:300px;
+  width: 300px;
+  border-radius:25px;
+}
+footer{
+  height:400px;
+  background: url("/static/foot.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.cont{
+  color: #fff;
+  font-family: "Oswald", sans-serif;
+  font-size: 30px;
+  margin-left: 7vw;
+  padding-top:60px;
+}
+.telep{
+  color: #fff;
+  font-family: "Oswald", sans-serif;
+  font-size: 23px;
+  margin-left: 7vw;
+  padding-top:60px;
+}
+.pocht{
+  color: #fff;
+  font-family: "Oswald", sans-serif;
+  font-size: 27px;
+  margin-left: 7vw;
+  text-decoration:underline;
+}
+.vk{
+
+  margin-left: 7vw;
+}
+.tg{
+  padding-top:10px;
+  margin-left: 20px;
 }

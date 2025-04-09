@@ -3,6 +3,9 @@
 <html lang="en">
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="{% static 'logo.png'%}" />
@@ -30,17 +33,17 @@
     {{form.allDistrict}}
       <input type='submit' value="поиск" id="search">
 </form>
+<div class="photos">
 {% for place in places %}
-<div class="salages">
-<div class="containers" id="{{place.0}}">
-    <a href="/place/{{place.0}}">
-        <div class="svo">
-            <img class="imgLink" src="data:image/gif;base64,{{place.4}}">
-        </div>
-        <p class="tourName">{{place.1}}</p>
-        <p class="desc">{{place.2}}</p>
-    </a>
-</div>
+
+    <div id="{{place.0}}"><a href="/place/{{place.0}}" class="fin">
+        <img src="data:image/gif;base64,{{place.4}}" class="ph">
+        <span class="mask">
+          <p class="inf">{{place.1}}</p>
+        </span>
+      </a></div>
+
 {% endfor %}
+</div>
 </body>
 </html>

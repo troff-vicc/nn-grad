@@ -22,20 +22,33 @@ class DateBase:
         
 if __name__ == '__main__':
     base = DateBase()
-    import base64
+    import base64, json
     
-    print(base.execute("PRAGMA table_info('hotels');").fetchall())
+    description = """Мы - #островкусныйресторан южной и кавказской кухни с лучшей летней верандой в городе. К нам приглашают самых любимых и дорогих сердцу людей, чтобы разделить красивое застолье и насладиться радушным вниманием, тепло отметить важные события, запомнить семейные праздники или просто сделать обычные ужины яркими. За этим гости неизменно возвращаются к нам."""
+    contact = {'tel': "8 (831) 216-01-00", 'link': 'https://tempcoffee.ru'}
+    contact = json.dumps(contact)
     
+    categories = ['1']
+    categories = json.dumps(categories)
     
+    img = ['5']
+    img = json.dumps(img)
     
+    base.execute(
+        f"""INSERT INTO places (id, name, address, description, contacts, categories, district, photo_id)
+            VALUES('5', 'Кофейня ТЕМП', 'ул. Пискунова, 24', '{description}', '{contact}', '{categories}', '2', '{img}')"""
+    )
+
     '''
-    
     with open('img.png', mode='rb') as img_file:
         image_64_encode = base64.b64encode(img_file.read())
     a = base.execute(
         f"""INSERT INTO imgs (id, imgData)
-        VALUES ('1', "{image_64_encode}")"""
+        VALUES ('2', "{image_64_encode}")"""
     )
+    print(base.execute("PRAGMA table_info('hotels');").fetchall())
+
+    
     
     base.execute(
         f"""CREATE TABLE hotels (

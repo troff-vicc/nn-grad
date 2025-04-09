@@ -43,3 +43,38 @@ font-size: 20px;
 padding-left:10px;
 padding-right:10px;
 }
+footer{
+  height:400px;
+  background: url("/static/foot.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.cont{
+  color: #fff;
+  font-family: "Oswald", sans-serif;
+  font-size: 30px;
+  margin-left: 7vw;
+  padding-top:60px;
+}
+.telep{
+  color: #fff;
+  font-family: "Oswald", sans-serif;
+  font-size: 23px;
+  margin-left: 7vw;
+  padding-top:60px;
+}
+.pocht{
+  color: #fff;
+  font-family: "Oswald", sans-serif;
+  font-size: 27px;
+  margin-left: 7vw;
+  text-decoration:underline;
+}
+.vk{
+
+  margin-left: 7vw;
+}
+.tg{
+  padding-top:10px;
+  margin-left: 20px;
+}

@@ -17,7 +17,7 @@ def place(request):
             categories = form.cleaned_data['allCategories']
             district = form.cleaned_data['allDistrict']
             places = []
-            print(categories, district)
+
 
             if district != '0':
                 out = [j[0] for j in dateBase.execute(
@@ -27,6 +27,8 @@ def place(request):
                 out = [j[0] for j in dateBase.execute(
                     f'''SELECT id FROM places'''
                 ).fetchall()]
+                
+                
             out1 = []
             if categories != '0':
                 allPl = dateBase.execute(
@@ -41,7 +43,7 @@ def place(request):
                     f'''SELECT id FROM places'''
                 ).fetchall()]
             
-            print(out, out1)
+            
             out = list(set(out) & set(out1))
             
                 
@@ -84,13 +86,18 @@ def hotel(request):
             district = form.cleaned_data['allDistrict']
             stars = form.cleaned_data['allStars']
             hotels = []
-            out = []
-            if district == 0 and categories == 0 and stars == 0:
-                return HttpResponseRedirect('/hotel')
-            if district != 0 :
+            
+            
+            if district != '0':
                 out = [j[0] for j in dateBase.execute(
                     f'''SELECT id FROM hotels WHERE district = {district}'''
                 ).fetchall()]
+            else:
+                out = [j[0] for j in dateBase.execute(
+                    f'''SELECT id FROM hotels'''
+                ).fetchall()]
+            
+            
             out1 = []
             if categories != 0:
                 allPl = dateBase.execute(
@@ -100,11 +107,23 @@ def hotel(request):
                     data1 = json.loads(pl[1])
                     if categories in data1:
                         out1.append(pl[0])
+            else:
+                out1 = [j[0] for j in dateBase.execute(
+                    f'''SELECT id FROM hotels'''
+                ).fetchall()]
+            
+            
             out2 = []
             if stars != 0:
                 out2 = [j[0] for j in dateBase.execute(
                     f'''SELECT id FROM hotels WHERE stars = {stars}'''
                 ).fetchall()]
+            else:
+                out2 = [j[0] for j in dateBase.execute(
+                    f'''SELECT id FROM hotels'''
+                ).fetchall()]
+                
+                
             out = list(set(out1) & set(out) & set(out2))
             for i in out:
                 hotels.append(list(dateBase.execute(
@@ -182,4 +201,8 @@ def hotelOne(request, id):
 
 def admin(request):
     idU = request.COOKIES.get('id', False)
+    if not idU:
+        return HttpResponseRedirect('/')
+    
+    
     return render(request, 'help.html')
