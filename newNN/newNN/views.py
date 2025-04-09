@@ -131,5 +131,14 @@ def help(request):
 
 
 def placeOne(request, id):
-    
-    return render(request, 'home.html')
+    dateBase = DateBase()
+    place = dateBase.execute(
+        f'''SELECT id, name, address, description, contacts, photo_id
+                    FROM places WHERE id ={id}'''
+    ).fetchone()
+    img = json.loads(place[-1])[0]
+    img = dateBase.execute(
+        f'''SELECT imgData FROM imgs WHERE id = {img}'''
+    ).fetchone()[0]
+    place = list(place) + [img[2:-1]]
+    return render(request, 'place_one.html', {'place': place})

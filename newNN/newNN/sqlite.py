@@ -24,7 +24,7 @@ if __name__ == '__main__':
     base = DateBase()
     import base64
     
-    print(base.execute("PRAGMA table_info('hotels');").fetchall())
+    print(base.execute("PRAGMA table_info('places');").fetchall())
     
     
     
