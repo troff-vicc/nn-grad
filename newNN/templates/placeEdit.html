@@ -5,10 +5,12 @@
     <title>вход</title>
 </head>
 <body>
-<form action="/log" method="post">
+<form action="/place/edit/{{id}}" method="post" enctype="multipart/form-data">
       {%csrf_token%}
       {{form}}
       <input type='submit' value="поиск" id="search">
 </form>
+
+<img src="data:image/gif;base64,{{img}}" class="ph">
 </body>
 </html>

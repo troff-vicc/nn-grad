@@ -27,7 +27,7 @@ class LogForm(forms.Form):
 class PlaceEditForm(forms.Form):
     name = forms.CharField(label_suffix=False, label='', max_length=100)
     
-    description = forms.CharField(label_suffix=False, label='', max_length=100)
+    description = forms.CharField(label_suffix=False, label='', max_length=1000)
     
     address = forms.CharField(label_suffix=False, label='', max_length=100)
     
@@ -53,10 +53,10 @@ class PlaceEditForm(forms.Form):
         super(PlaceEditForm, self).__init__(*args, **kwargs)
         if t:
             self.fields['name'].widget = forms.TextInput(attrs={'value': my_arg[0]})
-            self.fields['description'].widget = forms.TextInput(attrs={'value': my_arg[1]})
-            self.fields['address'].widget = forms.TextInput(attrs={'value': my_arg[2]})
+            self.fields['description'].widget = forms.TextInput(attrs={'value': my_arg[2]})
+            self.fields['address'].widget = forms.TextInput(attrs={'value': my_arg[1]})
             self.fields['tel'].widget = forms.TextInput(attrs={'value': my_arg[3]})
             self.fields['email'].widget = forms.TextInput(attrs={'value': my_arg[4]})
             self.fields['link'].widget = forms.TextInput(attrs={'value': my_arg[5]})
             self.initial['allCategories'] = my_arg[6]
-            self.initial['allCategories'] = my_arg[7]
+            self.initial['allDistrict'] = my_arg[7]

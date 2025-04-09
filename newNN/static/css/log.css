@@ -1,4 +1,27 @@
-* {
+#id_code{
+    padding-left:13px;
+    font-family: "Open Sans", sans-serif;
+  border:1px solid black;
+  width:300px;
+  height:50px;
+  font-size: 20px;
+  border-radius: 45px;
+}
+#search{
+    background-color: #68B4E6;
+    font-family: "Open Sans", sans-serif;
+    width:150px;
+    height:49px;
+    font-size: 30px;
+    border-radius: 45px;
+    margin-top:20px;
+    border:0;
+  }
+  form{
+    margin-top: 50px;
+  text-align: center;
+  }
+  * {
     margin: 0px;
     padding: 0px;
 }
@@ -32,7 +55,7 @@ header{
 }
 .go{
     font-family: "Open Sans", sans-serif;
-    background-color: #D9D9D9;
+background-color: #D9D9D9;
 color:black;
 border-radius: 45px;
 text-decoration: none;
@@ -101,7 +124,6 @@ span:hover {
     transform: translateY(110px);
 }
 .ph{
-    margin-top: 50px;
     height:300px;
     width: 300px;
 }
@@ -202,4 +224,15 @@ float: right;
 .prof{
     width:40px;
     height:40px
+}
+.avt{
+  color:black;
+  font-size: 30px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  text-align: center;
+}
+input::placeholder {
+  opacity: 0.7;
+
 }

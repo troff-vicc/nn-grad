@@ -1,13 +1,35 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">  
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+      <link rel="icon" type="image/png" href="{% static 'logo.png'%}" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>вход</title>
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="{% static 'css/log.css'%}">
 </head>
 <body>
+    <header>
+        <div class="find">
+            <div class="logo"><a href="/"><img src="{% static 'logo.png'%}" alt="logo" class="logo"></a></div>
+            <div class="opt"><a href="/place" class="go">Куда пойти</a></div>
+            <div class="opt"><a href="/hotel" class="go">Где остановиться</a></div>
+            <div class="opt"><a href="/" class="go">События</a></div>
+            <div class="opt"><a href="/child" class="go">Детский путеводитель</a></div>
+            <div class="opt"><a href="/help" class="go">Помощь</a></div>
+        </div>
+        </header>
+        <p class="avt">Авторизация</p>
 <form action="/log" method="post">
       {%csrf_token%}
       {{form}}
+      <br>
       <input type='submit' value="поиск" id="search">
 </form>
 </body>
