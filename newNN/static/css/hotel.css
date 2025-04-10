@@ -301,3 +301,66 @@ float: right;
   .go:hover{
     background-color: #E30613;
 }
+#id_name{
+  font-family: "Open Sans", sans-serif;
+  border:1px solid black;
+  width:200px;
+  height:30px;
+  font-size: 20px;
+  border-radius: 45px;
+  padding-left:4px;
+}
+#id_description{
+  font-family: "Open Sans", sans-serif;
+  border:1px solid black;
+  width:200px;
+  height:30px;
+  font-size: 20px;
+  border-radius: 45px;
+  padding-left:4px;
+}
+#id_address{
+  font-family: "Open Sans", sans-serif;
+  border:1px solid black;
+  width:200px;
+  height:30px;
+  font-size: 20px;
+  border-radius: 45px;
+  padding-left:4px;
+}
+#id_tel{
+  font-family: "Open Sans", sans-serif;
+  border:1px solid black;
+  width:200px;
+  height:30px;
+  font-size: 20px;
+  border-radius: 45px;
+  padding-left:4px;
+}
+#id_email{
+  font-family: "Open Sans", sans-serif;
+  border:1px solid black;
+  width:200px;
+  height:30px;
+  font-size: 20px;
+  border-radius: 45px;
+  padding-left:4px;
+}
+#id_link{
+  font-family: "Open Sans", sans-serif;
+  border:1px solid black;
+  width:200px;
+  height:30px;
+  font-size: 20px;
+  border-radius: 45px;
+  padding-left:4px;
+}
+.change{
+
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    font-size:4vw;
+    text-align: center;
+    margin-top: 30px;
+
+}

@@ -290,3 +290,12 @@ float: right;
 .go:hover{
   background-color: #E30613;
 }
+#id_dateT{
+  padding-left:4px;
+  font-family: "Open Sans", sans-serif;
+border:1px solid black;
+width:150px;
+height:30px;
+font-size: 20px;
+border-radius: 45px;
+}
