@@ -15,7 +15,7 @@ class ActionForm(forms.Form):
     
     
     allCategories = forms.ChoiceField(choices = categories, label_suffix=False, label='')
-    allDistrict = forms.DateField(label='Дата от', widget=DateInput, initial=date.today())
+    dateT = forms.DateField(label='Дата от', widget=DateInput, initial=date.today())
     
     
 class HotelForm(forms.Form):

@@ -3,7 +3,7 @@ import sqlite3
 
 class DateBase:
     def __init__(self):
-        self.connection: sqlite3.Connection = sqlite3.connect('../dataNN.db')#newNN
+        self.connection: sqlite3.Connection = sqlite3.connect('newNN/dataNN.db')#newNN
         self.cursor: sqlite3.Cursor = self.connection.cursor()
 
     def commit(self):
@@ -23,10 +23,31 @@ class DateBase:
 if __name__ == '__main__':
     base = DateBase()
     import base64, json
-    print(base.execute("PRAGMA table_info('actions');").fetchall())
     #a = base.execute("""select imgData from imgs where id=3""").fetchall()[1][0]
     #base.execute(f"""DELETE FROM place WHERE id=3 AND imgData='{a}'""")
+    
+    a = base.execute(f"""UPDATE imgs SET id=8 WHERE id='imgLen'""")
+    print(a)
+    
     '''
+    img = ['8']
+    img = json.dumps(img)
+    
+    name = 'На пл. М. Горького завершила работу "Новогодняя Горьковская ярмарка" (20 декабря - 8 января 2025)'
+    description = """С 23 декабря по 8 января в сквере на площади Горького открыта традиционная «Горьковская ярмарка».  В сквере установлены 20 ярмарочных домиков.
+
+    Ежегодно ярмарку посещают около 30 000 нижегородцев и туристов. """
+    base.execute(
+        f"""INSERT INTO actions (id, name, description, date, type, photo_id)
+                    VALUES('0', '{name}', '{description}', '20.12.2024', '1', '{img}')"""
+    )
+    
+    
+    
+    
+    img = ['5']
+    img = json.dumps(img)
+    
     
     
     with open('img.png', mode='rb') as img_file:

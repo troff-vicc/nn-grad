@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{% static 'logo.png'%}" />
+    <meta charset="UTF-8">
+    <title>Куда идти</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/place.css'%}">
+</head>
+<body>
+    <main>
+        <header>
+    <div class="find">
+        <div class="logo"><a href="/"><img src="{% static 'logo.png'%}" alt="logo" class="logo"></a></div>
+        <div class="opt"><a href="/place" class="go1">Куда пойти</a></div>
+        <div class="opt"><a href="/hotel" class="go">Где остановиться</a></div>
+        <div class="opt"><a href="/" class="go">События</a></div>
+        <div class="opt"><a href="/child" class="go">Детский путеводитель</a></div>
+        <div class="opt"><a href="/help" class="go">Помощь</a></div>
+    </div>
+    </header>
+    </main>
+<form action="/place" method="post">
+      {%csrf_token%}
+    {{form.allCategories}}
+    {{form.dateT}}
+      <input type='submit' value="поиск" id="search">
+</form>
+<div class="photos">
+{% for action in actions %}
+
+    <div id="{{action.0}}"><a href="/place/{{action.0}}" class="fin">
+        <img src="data:image/gif;base64,{{action.4}}" class="ph">
+        <span class="mask">
+          <p class="inf">{{action.1}}</p>
+        </span>
+      </a></div>
+
+{% endfor %}
+</div>
+<footer>
+  
+    <div class="link">
+  <p class="cont">Контакты:</p>
+  <p class="telep">+7 (831) 434-04-59</p>
+  <p class="pocht">info@nn-grad.ru</p>
+  <a href="https://vk.com/nn_grad"><img src="{% static 'vk.png'%}" alt="vk" class="vk"></a>
+  <a href="https://t.me/nn_grad"><img src="{% static 'tg.png'%}" alt="tg" class="tg"></a>
+  </div>
+  <div class="pid">
+  <p class="contik">Расскажем о городе(ТИЦ)</p>
+  <p class="lolka">Кремль, 7</p>
+  <p class="lol">ул. Костина, 2</p>
+  </div>
+  <a href="/admin">
+  <div class="or">
+    <img src="{% static 'profi.png'%}" alt="" class="prof">
+    <p class="panel">Панель администратора</p>
+  </div>
+</a>
+  </footer>
+</body>
+</html>

@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .forms import PlaceForm, HotelForm, LogForm, PlaceEditForm
+from .forms import PlaceForm, HotelForm, LogForm, PlaceEditForm, ActionForm
 from .sqlite import DateBase
 import json, base64
 
@@ -390,63 +390,59 @@ def action(request):
     dateBase = DateBase()
     
     if request.method == 'POST':
-        form = PlaceForm(request.POST)
+        form = ActionForm(request.POST)
         if form.is_valid():
             
             categories = form.cleaned_data['allCategories']
-            district = form.cleaned_data['allDistrict']
-            places = []
+            dateT = form.cleaned_data['dateT']
+            actions = []
             
-            if district != '0':
+            if dateT != '0':
                 out = [j[0] for j in dateBase.execute(
-                    f'''SELECT id FROM places WHERE district = {district}'''
+                    f'''SELECT id FROM actions WHERE date = {dateT}'''
                 ).fetchall()]
             else:
                 out = [j[0] for j in dateBase.execute(
-                    f'''SELECT id FROM places'''
+                    f'''SELECT id FROM actions'''
                 ).fetchall()]
             
-            out1 = []
+            
             if categories != '0':
-                allPl = dateBase.execute(
-                    f'''SELECT id, categories FROM places'''
-                ).fetchall()
-                for pl in allPl:
-                    data1 = json.loads(pl[1])
-                    if categories in data1:
-                        out1.append(pl[0])
+                 out1 = [j[0] for j in dateBase.execute(
+                    f"""SELECT id FROM actions WHERE type='{categories}'"""
+                ).fetchall()]
             else:
                 out1 = [j[0] for j in dateBase.execute(
-                    f'''SELECT id FROM places'''
+                    f'''SELECT id FROM actions'''
                 ).fetchall()]
             
             out = list(set(out) & set(out1))
             
             for i in out:
-                places.append(list(dateBase.execute(
+                actions.append(list(dateBase.execute(
                     f'''SELECT id, name, description, photo_id
-                                                FROM places WHERE id = {i}'''
+                                                FROM actions WHERE id = {i}'''
                 ).fetchone()))
-            for i in range(len(places)):
-                img = json.loads(places[i][-1])[0]
+            for i in range(len(actions)):
+                img = json.loads(actions[i][-1])[0]
                 img = dateBase.execute(
                     f'''SELECT imgData FROM imgs WHERE id = {img}'''
                 ).fetchone()[0]
-                places[i] = list(places[i]) + [img[2:-1]]
-            return render(request, 'place.html', {'form': form, 'places': places})
+                actions[i] = list(actions[i]) + [img[2:-1]]
+            return render(request, 'actions.html', {'form': form, 'actions': actions})
         else:
-            return HttpResponseRedirect('/place')
+            return HttpResponseRedirect('/actions')
     else:
-        form = PlaceForm()
-        places = dateBase.execute(
+        form = ActionForm()
+        actions = dateBase.execute(
             f'''SELECT id, name, description, photo_id
-                    FROM places LIMIT 8'''
+                    FROM actions LIMIT 8'''
         ).fetchall()
-        for i in range(len(places)):
-            img = json.loads(places[i][3])[0]
+        for i in range(len(actions)):
+            img = json.loads(actions[i][3])[0]
             img = dateBase.execute(
                 f'''SELECT imgData FROM imgs WHERE id = {img}'''
             ).fetchone()[0]
-            places[i] = list(places[i]) + [img[2:-1]]
+            actions[i] = list(actions[i]) + [img[2:-1]]
     
-    return render(request, 'place.html', {'form': form, 'places': places})
+    return render(request, 'action.html', {'form': form, 'actions': actions})
