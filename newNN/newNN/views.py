@@ -387,3 +387,66 @@ def add(request):
 
 
 def action(request):
+    dateBase = DateBase()
+    
+    if request.method == 'POST':
+        form = PlaceForm(request.POST)
+        if form.is_valid():
+            
+            categories = form.cleaned_data['allCategories']
+            district = form.cleaned_data['allDistrict']
+            places = []
+            
+            if district != '0':
+                out = [j[0] for j in dateBase.execute(
+                    f'''SELECT id FROM places WHERE district = {district}'''
+                ).fetchall()]
+            else:
+                out = [j[0] for j in dateBase.execute(
+                    f'''SELECT id FROM places'''
+                ).fetchall()]
+            
+            out1 = []
+            if categories != '0':
+                allPl = dateBase.execute(
+                    f'''SELECT id, categories FROM places'''
+                ).fetchall()
+                for pl in allPl:
+                    data1 = json.loads(pl[1])
+                    if categories in data1:
+                        out1.append(pl[0])
+            else:
+                out1 = [j[0] for j in dateBase.execute(
+                    f'''SELECT id FROM places'''
+                ).fetchall()]
+            
+            out = list(set(out) & set(out1))
+            
+            for i in out:
+                places.append(list(dateBase.execute(
+                    f'''SELECT id, name, description, photo_id
+                                                FROM places WHERE id = {i}'''
+                ).fetchone()))
+            for i in range(len(places)):
+                img = json.loads(places[i][-1])[0]
+                img = dateBase.execute(
+                    f'''SELECT imgData FROM imgs WHERE id = {img}'''
+                ).fetchone()[0]
+                places[i] = list(places[i]) + [img[2:-1]]
+            return render(request, 'place.html', {'form': form, 'places': places})
+        else:
+            return HttpResponseRedirect('/place')
+    else:
+        form = PlaceForm()
+        places = dateBase.execute(
+            f'''SELECT id, name, description, photo_id
+                    FROM places LIMIT 8'''
+        ).fetchall()
+        for i in range(len(places)):
+            img = json.loads(places[i][3])[0]
+            img = dateBase.execute(
+                f'''SELECT imgData FROM imgs WHERE id = {img}'''
+            ).fetchone()[0]
+            places[i] = list(places[i]) + [img[2:-1]]
+    
+    return render(request, 'place.html', {'form': form, 'places': places})
