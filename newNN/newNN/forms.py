@@ -1,4 +1,6 @@
 from django import forms
+from formset.widgets import DateInput
+from datetime import date
 
 class PlaceForm(forms.Form):
     categories = ((0, "Все категории"), (1, "Парки"), (2, "Музеи"))
@@ -6,6 +8,14 @@ class PlaceForm(forms.Form):
     
     allCategories = forms.ChoiceField(choices = categories, label_suffix=False, label='')
     allDistrict = forms.ChoiceField(choices = district, label_suffix=False, label='')
+    
+    
+class ActionForm(forms.Form):
+    categories = ((0, "Все категории"), (1, "Концерты"), (2, "Шоу"), (2, "Спорт"))
+    
+    
+    allCategories = forms.ChoiceField(choices = categories, label_suffix=False, label='')
+    allDistrict = forms.DateField(label='Дата от', widget=DateInput, initial=date.today())
     
     
 class HotelForm(forms.Form):

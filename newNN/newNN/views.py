@@ -258,7 +258,6 @@ def placeEdit(request, id):
         return HttpResponseRedirect('/log')
     dateBase = DateBase()
     if request.method == 'POST':
-        print(1)
         form = PlaceEditForm(request.POST, request.FILES)
         if form.is_valid():
             name = form.cleaned_data['name']
@@ -326,7 +325,65 @@ def placeEdit(request, id):
         ).fetchone()[0]
         
     return render(request, 'placeEdit.html', {'form': form, 'img': imgPhoto[2:-1], 'id': data[0]})
-    
 
-def hotelEdit(request):
-    pass
+
+def add(request):
+    idU = request.COOKIES.get('id', False)
+    if idU != '3d5148a1666a59cc27311c96f9a346effaa6beacc4e2e55c6ee23d7ea925b44a':
+        return HttpResponseRedirect('/log')
+    
+    dateBase = DateBase()
+    if request.method == 'POST':
+        form = PlaceEditForm(request.POST, request.FILES)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            description = form.cleaned_data['description']
+            address = form.cleaned_data['address']
+            tel = form.cleaned_data['tel']
+            email = form.cleaned_data['email']
+            link = form.cleaned_data['link']
+            allCategories = form.cleaned_data['allCategories']
+            allDistrict = form.cleaned_data['allDistrict']
+            
+            idImg = []
+            img_file = form.cleaned_data['img_file']
+            image_64_encode = base64.b64encode(img_file.read())
+            imgLen = int(dateBase.execute("""SELECT id FROM imgs ORDER BY id DESC LIMIT 1;""").fetchone()[0]) + 1
+            
+            dateBase.execute(
+                f"""INSERT INTO imgs (id, imgData)
+                    VALUES({imgLen}, "{image_64_encode}");""")
+            idImg.append(imgLen)
+            dataJson = json.dumps(idImg)
+            
+            categories = json.dumps([str(allCategories)])
+            
+            contact = {}
+            if tel:
+                contact['tel'] = tel
+            if email:
+                contact['email'] = email
+            if link:
+                contact['link'] = link
+            
+            cur = dateBase.execute(f'''SELECT id from places;''').fetchall()
+            
+            dateBase.execute(  #
+                f"""INSERT INTO places (id, name, address, description, contacts, categories, district, photo_id)
+                            VALUES({len(cur)}, '{name}', '{address}', '{description}', "{contact}", '{categories}', '{allDistrict}', '{dataJson}')
+    """
+            )
+            dateBase.commit()
+            dateBase.close()
+            return HttpResponseRedirect('/admin')
+        else:
+            print(form.errors)
+            return HttpResponseRedirect('/admin')
+    
+    else:
+        form = PlaceEditForm()
+    
+    return render(request, 'add.html', {'form': form})
+
+
+def action(request):

@@ -164,3 +164,6 @@ float: right;
 #placesB{
 margin-right:40px;
 }
+.go:hover{
+  background-color: #E30613;
+}
